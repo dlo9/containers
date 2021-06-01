@@ -65,6 +65,21 @@ build_folder() {
     fi
 }
 
+# Pushes the README.md to docker as a description
+push_folder_readme() {
+	folder="$1"
+	readme="/workspace/$folder/README.md"
+
+	if [ -f "$readme" ]; then
+		docker run -v $PWD:/workspace \
+		  -e DOCKERHUB_USERNAME="$DOCKERHUB_USERNAME" \
+		  -e DOCKERHUB_PASSWORD="$DOCKERHUB_PASSWORD" \
+		  -e DOCKERHUB_REPOSITORY="dlo9/$folder" \
+		  -e README_FILEPATH="$readme" \
+		  peterevans/dockerhub-description:latest
+	fi
+}
+
 ###########################
 ##### OPTIONS PARSING #####
 ###########################
@@ -127,4 +142,8 @@ fi
 
 for folder in "$@"; do
     build_folder "$folder"
+
+	if [ -n "$push" ]; then
+		push_folder_readme "$folder"
+	fi
 done
