@@ -30,3 +30,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         run: ./build.sh --multi-arch --push
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
