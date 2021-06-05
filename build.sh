@@ -92,6 +92,7 @@ Builds docker images in the repository
     -m, --multi-arch    Build for every architecture
                         If not specified, only images for the host architecture will be built
     -p, --push          Push images to a repository. Only relevant with --multi-arch
+    -d, --docs          Push image documentation. This is automatically specified with -p.
     -r, --registry      Registry to push to
     -h, --help          Display this help
 EOF
@@ -99,7 +100,7 @@ EOF
 
 
 # Parse options
-options=$(getopt -o mph --long multi-arch,push,help -- "$@")
+options=$(getopt -o mpdh --long multi-arch,push,docs,help -- "$@")
 
 if [ $? -ne 0 ]; then
     usage
@@ -117,7 +118,11 @@ while true; do
         ;;
     -p|--push)
         push=1
+		docs=1
         ;;
+	-d|--docs)
+		docs=1
+		;;
     -h|--help)
         usage
         exit 0
@@ -143,7 +148,7 @@ fi
 for folder in "$@"; do
     build_folder "$folder"
 
-	if [ -n "$push" ]; then
+	if [ -n "$docs" ]; then
 		push_folder_readme "$folder"
 	fi
 done
