@@ -92,7 +92,7 @@ Builds docker images in the repository
     -m, --multi-arch    Build for every architecture
                         If not specified, only images for the host architecture will be built
     -p, --push          Push images to a repository. Only relevant with --multi-arch
-    -d, --docs          Push image documentation. This is automatically specified with -p.
+    -d, --docs          Push image documentation
     -r, --registry      Registry to push to
     -h, --help          Display this help
 EOF
@@ -118,7 +118,6 @@ while true; do
         ;;
     -p|--push)
         push=1
-		docs=1
         ;;
 	-d|--docs)
 		docs=1
