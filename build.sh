@@ -51,9 +51,10 @@ build_folder() {
         info "Building $folder..."
 		cd "$folder"
 
-		args="$args --load"
         if [ -n "$push" ]; then
 			args="$args --push"
+		else
+			args="$args --load"
 		fi
 
         if [ -z "$multi_arch" ]; then
