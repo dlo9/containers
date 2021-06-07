@@ -29,3 +29,4 @@ RUN mkdir -p /var/run/zrepl/stdinserver && chmod -R 0700 /var/run/zrepl
 RUN apk --no-cache add gcompat zfs
 COPY --from=builder /root /
 ENTRYPOINT ["zrepl"]
+CMD ["daemon"]
