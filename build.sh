@@ -53,7 +53,7 @@ build_folder() {
 
         if [ -n "$push" ]; then
 			args="$args --push"
-		else
+		elif [ -z "$multi_arch" ]; then
 			args="$args --load"
 		fi
 
