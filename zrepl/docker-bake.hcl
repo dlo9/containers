@@ -3,11 +3,11 @@ variable "zrepl_version" {
 }
 
 variable "iteration" {
-	default = 1
+	default = 2
 }
 
 variable "platforms" {
-	default = "linux/amd64,linux/386,linux/arm/v7,linux/arm64/v8"
+	default = "linux/amd64,linux/386,linux/arm64/v8"
 }
 
 variable "registries" {
