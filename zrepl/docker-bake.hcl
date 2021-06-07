@@ -36,7 +36,7 @@ function "tags" {
 	params = [registries, image, versions]
 
 	result = flatten([ 
-		for registry in flatten([registries]): [for version in versions: "${registry}/${image}:${version}"]
+		for registry in flatten([registries, ""]): [for version in versions: registry == "" ? "${image}:${version}" : "${registry}/${image}:${version}"]
 	])
 }
 
