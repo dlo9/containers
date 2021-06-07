@@ -7,7 +7,8 @@ ENV TARGET="$TARGETARCH$TARGETVARIANT"
 
 RUN apk add --no-cache curl
 RUN mkdir -p /root/usr/local/bin/
-RUN curl -L --fail -o /root/usr/local/bin/zrepl "https://github.com/zrepl/zrepl/releases/download/$ZREPL_VERSION/zrepl-linux-$TARGET"
+RUN curl -L --fail -o /root/usr/local/bin/zrepl "https://github.com/zrepl/zrepl/releases/download/$ZREPL_VERSION/zrepl-linux-$TARGET" && \
+	chmod +x /root/usr/local/bin/zrepl
 
 FROM alpine:3 as image
 LABEL org.opencontainers.image.url=https://github.com/dlo9/containers/tree/main/zrepl \
