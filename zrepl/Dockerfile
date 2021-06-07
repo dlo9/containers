@@ -19,5 +19,13 @@ LABEL org.opencontainers.image.url=https://github.com/dlo9/containers/tree/main/
       org.opencontainers.image.authors=dlo9 \
       org.opencontainers.image.description="A containerized version of zrepl"
 
+# Create runtime directories
+# https://zrepl.github.io/configuration/misc.html
+RUN mkdir -p /var/run/zrepl/stdinserver && chmod -R 0700 /var/run/zrepl
+
+# Dependencies:
+#   zfs: Obvious reasons
+#   gcompat: For /lib64/ld-linux-x86-64.so.2
+RUN apk --no-cache add gcompat zfs
 COPY --from=builder /root /
 ENTRYPOINT ["zrepl"]
