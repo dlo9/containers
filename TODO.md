@@ -1,0 +1,1 @@
+- Use [Task](https://taskfile.dev/#/) instead of custom build scripts
